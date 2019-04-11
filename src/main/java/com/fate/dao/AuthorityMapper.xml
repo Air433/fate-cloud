@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fate.dao.AuthorityMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fate.entity.Authority">
+        <id column="id" property="id" />
+        <result column="data_url" property="dataUrl" />
+        <result column="menu_class" property="menuClass" />
+        <result column="menu_code" property="menuCode" />
+        <result column="menu_name" property="menuName" />
+        <result column="parent_menucode" property="parentMenucode" />
+        <result column="sequence" property="sequence" />
+        <result column="menu_type" property="menuType" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+
+    <resultMap id="AuthorityBiz" type="com.fate.domain.bizs.AuthorityBiz">
+        <id column="id" property="id" />
+        <result column="data_url" property="dataUrl" />
+        <result column="menu_class" property="menuClass" />
+        <result column="menu_code" property="menuCode" />
+        <result column="menu_name" property="menuName" />
+        <result column="parent_menucode" property="parentMenucode" />
+        <result column="sequence" property="sequence" />
+        <result column="menu_type" property="menuType" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+
+    <select id="selectByRoleId" parameterType="java.lang.String" resultMap="AuthorityBiz">
+
+        SELECT sa.* FROM sys_authority sa
+        LEFT JOIN  sys_role_authority sra ON sa.menu_code = sra.menu_code
+        WHERE sra.role_key = #{id}
+    </select>
+</mapper>

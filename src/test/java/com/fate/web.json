@@ -1,0 +1,53 @@
+{
+  "clientType":"WEB",
+  "menu":{
+    "code":"HDW",
+    "name":"思创·仓储管理",
+    "type":"MENU",
+    "permissionCode":"",
+    "menus":[
+      {
+        "code":"MPRODUCT",
+        "name":"商品档案",
+        "type":"MENU",
+        "permissionCode":"PRODUCT",
+        "menus":[
+          {
+            "code":"BRAND",
+            "name":"品牌档案",
+            "type":"MENU",
+            "permissionCode":"BRAND",
+            "menus":[
+              {
+                "code":"BRAND_CREATE",
+                "name":"新建品牌",
+                "type":"BUTTON",
+                "permissionCode":"BRAND",
+                "menus":[
+
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "code":"MBUSINESS",
+        "name":"业务管理",
+        "type":"MENU",
+        "permissionCode":"",
+        "menus":[
+          {
+            "code":"OUTBOUND_ORDER",
+            "name":"出库单管理",
+            "type":"MENU",
+            "permissionCode":"OUTBOUND_ORDER",
+            "menus":[
+
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
