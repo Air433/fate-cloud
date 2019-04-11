@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Created by Air on 2018/5/20.
  */
-@RestController
+//@RestController
 public class LoginController extends BaseController{
 
     @RequestMapping(value = "/login")
