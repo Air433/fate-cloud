@@ -91,7 +91,7 @@ public class SysRoleController extends AbstractController{
     }
 
     @SysLogAn("删除角色")
-    @PostMapping("/delete")
+    @DeleteMapping("/delete")
     @RequiresPermissions("sys:role:delete")
     public AirResult delete(@RequestBody Long[] roleIds){
         sysRoleService.deleteBatch(roleIds);

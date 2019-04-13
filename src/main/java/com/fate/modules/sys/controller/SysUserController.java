@@ -56,7 +56,7 @@ public class SysUserController extends AbstractController{
     }
 
     @SysLogAn("修改密码")
-    @PostMapping("/password")
+    @PutMapping("/password")
     public AirResult password(@RequestBody PasswordForm form){
 
         Assert.isBlank(form.getNewPassword(), "新密码不能为空");
@@ -102,7 +102,7 @@ public class SysUserController extends AbstractController{
      * @return
      */
     @SysLogAn("删除用户")
-    @PostMapping("/delete")
+    @DeleteMapping("/delete")
     @RequiresPermissions("sys:user:delete")
     public AirResult delete(@RequestParam Long[] userIds){
         if (ArrayUtils.contains(userIds, 1L)){

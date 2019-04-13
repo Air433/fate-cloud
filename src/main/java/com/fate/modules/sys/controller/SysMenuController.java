@@ -107,7 +107,7 @@ public class SysMenuController extends AbstractController{
     }
 
     @SysLogAn("修改菜单")
-    @PostMapping("/update")
+    @PutMapping("/update")
     @RequiresPermissions("sys:menu:update")
     public AirResult update(@RequestBody SysMenu menu){
 
@@ -120,7 +120,7 @@ public class SysMenuController extends AbstractController{
     }
 
     @SysLogAn("删除菜单")
-    @PostMapping("/delete/{menuId}")
+    @DeleteMapping("/delete/{menuId}")
     @RequiresPermissions("sys:menu:delete")
     public AirResult delete(@PathVariable("menuId") long menuId){
         if (menuId <= 3l){

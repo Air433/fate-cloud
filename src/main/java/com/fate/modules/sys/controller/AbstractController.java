@@ -28,6 +28,7 @@ public abstract class AbstractController {
     @ExceptionHandler
     public AirResult exp(HttpServletRequest request, Exception ex){
 
+        logger.error("接口异常："+request.getRequestURL());
         return AirResult.error(ex.getMessage());
     }
 }

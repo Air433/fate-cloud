@@ -36,7 +36,8 @@ public class LoginController extends AbstractController{
     private RedisLock redisLock;
 
     @PostMapping("/login")
-    public AirResult login(@RequestBody SysLoginRequest request){
+    public AirResult login(@RequestBody SysLoginRequest request) throws Exception {
+
         if (request == null){
             return AirResult.error("请求信息为空，请检查");
         }

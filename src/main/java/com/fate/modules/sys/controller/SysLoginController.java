@@ -9,6 +9,8 @@ import com.fate.modules.sys.request.SysLoginRequest;
 import com.fate.modules.sys.service.SysUserService;
 import com.fate.modules.sys.service.SysUserTokenService;
 import com.fate.response.AirResult;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -23,6 +25,7 @@ import java.util.UUID;
  * @Author oyg
  * @Date 2018/7/21/12:52
  */
+@Api(value="SysLoginController",tags={"后台用户操作接口"})
 @RestController
 @Scope(value = "request")
 public class SysLoginController extends AbstractController{
@@ -34,6 +37,7 @@ public class SysLoginController extends AbstractController{
     @Autowired
     private RedisLock redisLock;
 
+    @ApiOperation(value="登录", notes="")
     @PostMapping("/sys/login")
     public AirResult login(@RequestBody SysLoginRequest request){
         if (request == null){
