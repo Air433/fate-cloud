@@ -1,6 +1,6 @@
 package com.fate.modules.sys.service;
 
-import com.baomidou.mybatisplus.service.IService;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.fate.common.utils.PageUtils;
 import com.fate.modules.sys.entity.SysUser;
 import com.fate.modules.sys.form.RegiserUserReq;
@@ -34,7 +34,7 @@ public interface SysUserService extends IService<SysUser> {
 
     void update(SysUser user);
 
-    void save(SysUser sysUser);
+    void add(SysUser sysUser);
 
     void save(RegiserUserReq userReq);
 

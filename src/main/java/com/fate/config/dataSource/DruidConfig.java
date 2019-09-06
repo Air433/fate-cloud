@@ -10,7 +10,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "spring.datasource1")
+@ConfigurationProperties(prefix = "spring.datasource")
 public class DruidConfig {
 
     //@Value("${datasource1.url}")

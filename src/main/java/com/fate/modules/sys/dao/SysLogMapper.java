@@ -1,7 +1,7 @@
 package com.fate.modules.sys.dao;
 
 import com.fate.modules.sys.entity.SysLog;
-import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
  * <p>

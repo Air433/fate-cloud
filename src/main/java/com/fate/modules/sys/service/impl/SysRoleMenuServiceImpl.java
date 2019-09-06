@@ -1,6 +1,6 @@
 package com.fate.modules.sys.service.impl;
 
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fate.modules.sys.dao.SysRoleMenuMapper;
 import com.fate.modules.sys.entity.SysRoleMenu;
 import com.fate.modules.sys.service.SysRoleMenuService;

@@ -1,7 +1,7 @@
 package com.fate.dao;
 
 import com.fate.entity.RolePermission;
-import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import java.util.List;
 
 /**

@@ -1,7 +1,7 @@
 package com.fate.modules.sys.dao;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.fate.modules.sys.entity.SysUser;
-import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 import java.util.List;
 

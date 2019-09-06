@@ -1,8 +1,8 @@
 package com.fate.modules.sys.service.impl;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.plugins.Page;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fate.common.exception.RRException;
 import com.fate.common.utils.Constant;
 import com.fate.common.utils.PageUtils;
@@ -42,9 +42,9 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
         String roleName = (String)params.get("roleName");
         Long createUserId = (Long) params.get("createUserId");
 
-        Page<SysRole> page =  this.selectPage(
+        IPage<SysRole> page =  this.page(
                 new Query<SysRole>(params).getPage(),
-                new EntityWrapper<SysRole>()
+                new QueryWrapper<SysRole>()
                 .like(StringUtils.isNotBlank(roleName), "role_name", roleName)
                 .eq(createUserId !=null, "create_user_id", createUserId)
         );
@@ -53,9 +53,9 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void save(SysRole role) {
+    public void add(SysRole role) {
         role.setCreateTime(new Date());
-        this.insert(role);
+        this.save(role);
 
         //检查权限是否越权
         checkPerms(role);
@@ -68,7 +68,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     @Transactional(rollbackFor = Exception.class)
     public void deleteBatch(Long[] roleIds) {
         //删除角色
-        this.deleteBatchIds(Arrays.asList(roleIds));
+        this.removeByIds(Arrays.asList(roleIds));
 
         //删除角色与菜单关联
         sysRoleMenuService.deleteBatch(roleIds);

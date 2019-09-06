@@ -1,6 +1,6 @@
 package com.fate.modules.sys.service.impl;
 
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fate.modules.sys.dao.SysUserTokenMapper;
 import com.fate.modules.sys.entity.SysUserToken;
 import com.fate.modules.sys.oauth2.TokenGenerator;
@@ -30,7 +30,7 @@ public class SysUserTokenServiceImpl extends ServiceImpl<SysUserTokenMapper, Sys
 
         Date expireTime = new Date(now.getTime() + EXPIRE * 1000);
 
-        SysUserToken userToken = this.selectById(userId);
+        SysUserToken userToken = this.getById(userId);
 
         if (userToken == null){
             userToken = new SysUserToken();
@@ -39,7 +39,7 @@ public class SysUserTokenServiceImpl extends ServiceImpl<SysUserTokenMapper, Sys
             userToken.setUpdateTime(now);
             userToken.setExpireTime(expireTime);
 
-            this.insert(userToken);
+            this.save(userToken);
         }else {
             userToken.setToken(token);
             userToken.setUpdateTime(now);

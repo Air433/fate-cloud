@@ -2,7 +2,7 @@ package com.fate.dao;
 
 import com.fate.domain.bizs.AuthorityBiz;
 import com.fate.entity.Authority;
-import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 import java.util.List;
 

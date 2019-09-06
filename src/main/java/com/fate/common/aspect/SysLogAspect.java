@@ -136,7 +136,7 @@ public class SysLogAspect implements Ordered {
         sysLog.setTime(time);
         sysLog.setCreateDate(new Date());
 
-        sysLogService.insert(sysLog);
+        sysLogService.save(sysLog);
     }
 
     @Around("logPointCut()")
@@ -184,7 +184,7 @@ public class SysLogAspect implements Ordered {
         sysLog.setTime(time);
         sysLog.setCreateDate(new Date());
 
-        sysLogService.insert(sysLog);
+        sysLogService.save(sysLog);
     }
 
     @Around("testAspect()")

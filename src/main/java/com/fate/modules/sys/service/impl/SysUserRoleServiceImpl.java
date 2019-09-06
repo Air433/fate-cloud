@@ -1,6 +1,6 @@
 package com.fate.modules.sys.service.impl;
 
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fate.common.utils.MapUtils;
 import com.fate.modules.sys.dao.SysUserRoleMapper;
 import com.fate.modules.sys.entity.SysUserRole;
@@ -31,7 +31,7 @@ public class SysUserRoleServiceImpl extends ServiceImpl<SysUserRoleMapper, SysUs
     @Override
     public void saveOrUpdate(Long userId, List<Long> roleIdList) {
         //先删除用户与角色关系
-        this.deleteByMap(new MapUtils().put("user_id", userId));
+        this.removeByMap(new MapUtils().put("user_id", userId));
 
         if (roleIdList == null || roleIdList.size() == 0){
             return;
@@ -44,6 +44,6 @@ public class SysUserRoleServiceImpl extends ServiceImpl<SysUserRoleMapper, SysUs
             sysUserRole.setRoleId(roleId);
             list.add(sysUserRole);
         }
-        this.insertBatch(list);
+        this.saveBatch(list);
     }
 }

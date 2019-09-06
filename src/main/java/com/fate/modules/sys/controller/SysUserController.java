@@ -75,7 +75,7 @@ public class SysUserController extends AbstractController{
     @GetMapping("/info/{userId}")
     @RequiresPermissions("sys:user:info")
     public AirResult info(@PathVariable("userId") Long userId){
-        SysUser user = sysUserService.selectById(userId);
+        SysUser user = sysUserService.getById(userId);
 
         List<Long> roleIdList = sysUserRoleService.queryRoleIdList(userId);
         user.setRoleIdList(roleIdList);
@@ -113,7 +113,7 @@ public class SysUserController extends AbstractController{
             return AirResult.error("当前用户不能删除");
         }
 
-        sysUserService.deleteBatchIds(Arrays.asList(userIds));
+        sysUserService.removeByIds(Arrays.asList(userIds));
 
         return AirResult.success();
     }

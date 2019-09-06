@@ -1,6 +1,6 @@
 package com.fate.modules.sys.service;
 
-import com.baomidou.mybatisplus.service.IService;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.fate.modules.sys.entity.SysUserRole;
 
 import java.util.List;

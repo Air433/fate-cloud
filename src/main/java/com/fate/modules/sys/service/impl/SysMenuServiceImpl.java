@@ -1,6 +1,6 @@
 package com.fate.modules.sys.service.impl;
 
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fate.common.utils.Constant;
 import com.fate.common.utils.MapUtils;
 import com.fate.modules.sys.dao.SysMenuMapper;
@@ -66,9 +66,9 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     @Override
     public boolean delete(Long menuId) {
         //删除菜单
-        this.deleteById(menuId);
+        this.removeById(menuId);
         //删除关联表
-        return sysRoleMenuService.deleteByMap(new MapUtils().put("menu_id", menuId));
+        return sysRoleMenuService.removeByMap(new MapUtils().put("menu_id", menuId));
     }
 
     private List<SysMenu> getAllMenList(List<Long> menuIdList) {

@@ -1,7 +1,7 @@
 package com.fate.dao;
 
 import com.fate.entity.RoleAuthority;
-import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
  * <p>
