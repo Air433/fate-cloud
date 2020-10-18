@@ -9,6 +9,7 @@ import com.fate.common.utils.Constant;
 import com.fate.common.utils.MapUtils;
 import com.fate.common.utils.PageUtils;
 import com.fate.common.utils.Query;
+import com.fate.entity.User;
 import com.fate.modules.sys.dao.SysRoleMapper;
 import com.fate.modules.sys.dao.SysUserMapper;
 import com.fate.modules.sys.entity.SysUser;
@@ -35,7 +36,10 @@ import java.util.Map;
  * @Date 2018/7/21/16:26
  */
 @Service
+@Transactional
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
+//    @Autowired
+//    private SysMenuServiceImpl sysMenuService;
 
     @Autowired
     private SysLogService sysLogService;
@@ -147,7 +151,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    @RedisLock(lockName = "SysUserServiceImpl.testRedis",expire = 15000)
+    //@RedisLock(lockName = "SysUserServiceImpl.testRedis",expire = 15000)
     public void testRedis() throws Exception {
         //Thread.sleep(10000);
 
@@ -161,6 +165,32 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         }
         //Thread.sleep(20000);
         System.err.println("-------------------超时------------------");
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void testExceptionTranscation() {
+
+        try {
+            testExceptionIn();
+        }catch (Exception e){
+            System.err.println("异常---------------------");
+        }
+
+        SysUser user = new SysUser();
+        user.setUsername("测试事务啊！！！");
+        save(user);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void testExceptionIn(){
+//        try {
+            int i = 1/0;
+//        }catch (Exception e){
+//            System.err.println("异常");
+//        }
+
     }
 
     private void checkRole(SysUser user){

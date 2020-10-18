@@ -4,11 +4,12 @@ import com.fate.entity.User;
 import com.fate.modules.sys.entity.SysMenu;
 import com.fate.modules.sys.entity.SysRole;
 import com.fate.modules.sys.entity.SysUser;
+import com.google.common.collect.ImmutableCollection;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.text.CollationKey;
+import java.text.Collator;
+import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -387,5 +388,240 @@ public class ThreadTest {
 
     public static void k(){
         System.err.println(1);
+    }
+
+    @Test
+    public void t11(){
+        List<String> data = new ArrayList<String>();
+        data.add(null);
+        data.add("77");
+        data.add("22");
+        data.add("zz");
+        data.add("tw");
+        data.add("hs");
+        data.add("ac");
+        data.add("上海");
+        data.add("天津");
+        data.add(null);
+        data.add("北京");
+        data.add("深圳");
+        data.add("广州");
+        data.add("成都");
+        data.add("西安");
+        data.add("武汉");
+        data.add(null);
+        data.add("郑州");
+        data.add("邯郸");
+
+        Collections.sort(data, new Comparator<String>() {
+            Collator collator = Collator.getInstance(Locale.CHINA);
+
+            @Override
+            public int compare(String o1, String o2) {
+
+                if (o1 == null){
+                    return 1;
+                }
+
+                if (o2 == null){
+                    return -1;
+                }
+
+                CollationKey key1 = collator.getCollationKey(o1);
+                CollationKey key2 = collator.getCollationKey(o2);
+                return key1.compareTo(key2);
+
+            }
+        });
+
+        for (String str : data) {
+            System.out.print(str+"--");
+        }
+
+
+    }
+
+    @Test
+    public void t12(){
+        List<String> data = new ArrayList<String>();
+        data.add(null);
+        data.add("77");
+        data.add("22");
+        data.add("zz");
+        data.add("tw");
+        data.add("hs");
+        data.add("ac");
+        data.add("上海");
+        data.add("天津");
+        data.add(null);
+        data.add("北京");
+        data.add("深圳");
+        data.add("广州");
+        data.add("成都");
+        data.add("西安");
+        data.add("武汉");
+        data.add(null);
+        data.add("郑州");
+        data.add("邯郸");
+
+        Collections.sort(data, new Comparator<String>() {
+            Collator collator = Collator.getInstance(Locale.CHINA);
+
+            @Override
+            public int compare(String o1, String o2) {
+
+                if (o1 == null){
+                    return 1;
+                }
+
+                if (o2 == null){
+                    return -1;
+                }
+
+                CollationKey key1 = collator.getCollationKey(o1);
+                CollationKey key2 = collator.getCollationKey(o2);
+                return key1.compareTo(key2);
+
+            }
+        });
+
+        for (String str : data) {
+            System.out.print(str+"--");
+        }
+
+        Double a = 1.0;
+        a.compareTo(2.0);
+    }
+
+    @Test
+    public void t13(){
+        List<Double> data = new ArrayList<>();
+        data.add(null);
+        data.add(null);
+        data.add(3.1);
+        data.add(null);
+        data.add(null);
+        data.add(4.6);
+        data.add(null);
+        data.add(9.6);
+        data.add(null);
+        data.add(2.1);
+        data.add(null);
+
+
+        Collections.sort(data, (o1, o2) -> {
+
+            if (o1 == null){
+                return 1;
+            }
+
+            if (o2 == null){
+                return -1;
+            }
+
+            return o1.compareTo(o2);
+
+        });
+
+        for (Double str : data) {
+            System.out.print(str+"--");
+        }
+
+        Double a = 1.0;
+        a.compareTo(2.0);
+    }
+
+    @Test
+    public void t15(){
+        List<String> data = new ArrayList<String>();
+        data.add(null);
+        data.add("77");
+        data.add("22");
+        data.add("zz");
+        data.add("tw");
+        data.add("hs");
+        data.add("ac");
+        data.add("上海");
+        data.add("天津");
+        data.add(null);
+        data.add("北京");
+        data.add("深圳");
+        data.add("广州");
+        data.add("成都");
+        data.add("西安");
+        data.add("武汉");
+        data.add(null);
+        data.add("郑州");
+        data.add("邯郸");
+
+        Collections.sort(data,(o1, o2)-> {
+            Collator collator = Collator.getInstance(Locale.CHINA);
+                if (o1 == null){
+                    return 1;
+                }
+
+                if (o2 == null){
+                    return -1;
+                }
+
+                CollationKey key1 = collator.getCollationKey(o1);
+                CollationKey key2 = collator.getCollationKey(o2);
+                return key1.compareTo(key2);
+        });
+
+        for (String str : data) {
+            System.out.print(str+"--");
+        }
+
+        Double a = 1.0;
+        a.compareTo(2.0);
+    }
+
+    @Test
+    public void t16(){
+        Comparator<String> stringComparator = (o1, o2) -> {
+            Collator collator = Collator.getInstance(Locale.CHINA);
+            if (o1 == null) {
+                return 1;
+            }
+
+            if (o2 == null) {
+                return -1;
+            }
+
+            CollationKey key1 = collator.getCollationKey(o1);
+            CollationKey key2 = collator.getCollationKey(o2);
+            return key1.compareTo(key2);
+        };
+
+        Comparator<Double> doubleComparator = (o1, o2) -> {
+
+            if (o1 == null) {
+                return 1;
+            }
+
+            if (o2 == null) {
+                return -1;
+            }
+
+            return o1.compareTo(o2);
+
+        };
+    }
+
+    @Test
+    public void t17(){
+        Map<String, Object> map = new HashMap<>();
+        map.put("userid", 3);
+        map.put("name", "增大神");
+        map.put("age", 1888);
+
+        StringBuilder stringBuilder = new StringBuilder();
+        map.forEach((x, y)->{
+            stringBuilder.append(x).append("=").append("y,");
+        });
+
+        System.err.println(stringBuilder.substring(0, stringBuilder.toString().length()-1));
+
     }
 }

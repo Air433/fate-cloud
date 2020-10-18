@@ -3,6 +3,7 @@ package com.fate;
 import com.fate.config.dataSource.DruidConfig;
 
 import javax.annotation.Resource;
+import javax.sql.rowset.RowSetMetaDataImpl;
 
 import com.fate.modules.sys.dao.SysUserMapper;
 import com.fate.modules.sys.service.ShiroService;
@@ -15,6 +16,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.ResultSetWrappingSqlRowSetMetaData;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.jdbc.support.rowset.SqlRowSetMetaData;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.lang.reflect.InvocationTargetException;
@@ -29,10 +34,13 @@ import java.util.function.Function;
 import java.util.concurrent.*;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = FateCloudApplication.class)
 public class SpringBoot2ApplicationTests {
 
 	@Autowired
@@ -50,6 +58,8 @@ public class SpringBoot2ApplicationTests {
 	private SysUserService sysUserService;
 	@Autowired
 	private SysLogService sysLogService;
+	@Autowired
+    private JdbcTemplate jdbcTemplate;
 
 
 	@Test
@@ -330,6 +340,69 @@ public class SpringBoot2ApplicationTests {
             long time = dateTmp2.getTime() - dateTmp1.getTime();
             System.out.println(">>>" + taskNum + "任务终止");
             return taskNum + "任务返回运行结果,当前任务时间【" + time + "毫秒】";
+        }
+    }
+
+
+    @Test
+    public void t11(){
+        SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet("\n" +
+                "select IFNULL(SUM(volume),0) as '苏杉杉' from tb_order_material where 1=2 limit 0,30");
+        boolean hasData = sqlRowSet.next();
+
+        SqlRowSetMetaData metaData = sqlRowSet.getMetaData();
+//        ((RowSetMetaDataImpl) ((ResultSetWrappingSqlRowSetMetaData) metaData).resultSetMetaData);
+        String[] columnNames = metaData.getColumnNames();
+        for (String columnName : columnNames) {
+            System.err.println(columnName);
+
+        }
+        for (int i = 1; i <= metaData.getColumnNames().length; i++) {
+            System.err.println(metaData.getColumnLabel(i));
+            if (hasData){
+                System.err.println(sqlRowSet.getDouble(i));
+
+                System.err.println(Double.parseDouble(sqlRowSet.getString(i)));
+            }
+        }
+
+        while (sqlRowSet.next()){
+            for (int i = 1; i <= metaData.getColumnCount(); i++) {
+                System.err.println("-------"+sqlRowSet.getString(i));
+            }
+        }
+    }
+
+    @Test
+    public void t12(){
+        Student student = new Student.Builder().setName("苏杉杉").setAge(18).setStature(168).setSchool("清华大学").build();
+
+        String[] arr = {};
+        List<Object> collect = Stream.of(null).collect(Collectors.toList());
+        System.out.println(collect);
+    }
+
+    @Test
+    public void t13(){
+        sysUserService.testExceptionTranscation();
+        System.err.println("成功");
+    }
+
+    @Test
+    public void t15(){
+        sysLogService.testDelete();
+    }
+
+    @Test
+    public void t16(){
+	    int layer = 10;
+
+        for (int i = 1; i <= layer; i++) {
+            for (int j = 1; j <= layer; j++) {
+
+                System.err.print(" ");
+
+            }
         }
     }
 }

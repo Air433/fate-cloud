@@ -5,6 +5,7 @@ import com.fate.common.utils.MapUtils;
 import com.fate.modules.sys.dao.SysUserRoleMapper;
 import com.fate.modules.sys.entity.SysUserRole;
 import com.fate.modules.sys.service.SysUserRoleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,5 +46,16 @@ public class SysUserRoleServiceImpl extends ServiceImpl<SysUserRoleMapper, SysUs
             list.add(sysUserRole);
         }
         this.saveBatch(list);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void testExceptionIn(){
+//        try {
+            int i = 1/0;
+//        }catch (Exception e){
+//            System.err.println("异常");
+//        }
+
     }
 }

@@ -13,4 +13,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface SysLogMapper extends BaseMapper<SysLog> {
 
+    int deleteBatch(String[] ids);
+
 }

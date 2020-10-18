@@ -10,6 +10,8 @@ import com.fate.modules.sys.entity.SysLog;
  */
 public interface SysLogService extends IService<SysLog> {
 
+    void testDelete();
+
     void m1();
 
     void m2();

@@ -39,4 +39,8 @@ public interface SysUserService extends IService<SysUser> {
     void save(RegiserUserReq userReq);
 
     void testRedis() throws Exception;
+
+    void testExceptionTranscation();
+
+    void testExceptionIn();
 }

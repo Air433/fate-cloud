@@ -136,17 +136,27 @@ CREATE TABLE `schedule_job_log` (
 
 
 -- 用户表
-CREATE TABLE `tb_user` (
-  `user_id` bigint NOT NULL AUTO_INCREMENT,
-  `username` varchar(50) NOT NULL COMMENT '用户名',
-  `mobile` varchar(20) NOT NULL COMMENT '手机号',
-  `password` varchar(64) COMMENT '密码',
+-- CREATE TABLE `tb_user` (
+--   `user_id` bigint NOT NULL AUTO_INCREMENT,
+--   `username` varchar(50) NOT NULL COMMENT '用户名',
+--   `mobile` varchar(20) NOT NULL COMMENT '手机号',
+--   `password` varchar(64) COMMENT '密码',
+--   `create_time` datetime COMMENT '创建时间',
+--   PRIMARY KEY (`user_id`),
+--   UNIQUE INDEX (`username`)
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户';
+
+CREATE TABLE `sys_user_info` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `age` INT(3) COMMENT '年龄',
+  `education` varchar (255) COMMENT '学位',
+  `stature` INT(3) COMMENT '身高',
+  `head_image_path` varchar (255) COMMENT '头像路径',
   `create_time` datetime COMMENT '创建时间',
-  PRIMARY KEY (`user_id`),
-  UNIQUE INDEX (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户';
-
-
+  `update_time` datetime COMMENT '更新时间',
+  `user_id` bigint(20) NOT NULL COMMENT '用户id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户展示信息';
 
 
 

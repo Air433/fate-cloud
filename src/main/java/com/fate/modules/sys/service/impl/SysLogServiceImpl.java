@@ -6,6 +6,7 @@ import com.fate.modules.sys.dao.SysLogMapper;
 import com.fate.modules.sys.entity.SysLog;
 import com.fate.modules.sys.service.SysLogService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @Author oyg
@@ -37,6 +38,15 @@ public class SysLogServiceImpl extends ServiceImpl<SysLogMapper, SysLog> impleme
         System.err.println("-----执行M5");
         if (1==1){
             throw new Exception("111111111111111111111");
+        }
+    }
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void testDelete() {
+        this.baseMapper.deleteBatch(new String[0]);
+
+        if (1==1){
+            throw new RuntimeException();
         }
     }
 }
